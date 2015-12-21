@@ -33,6 +33,7 @@ public class MainFrame extends JFrame
 	public void init() throws IOException
 	{
 		this.setUndecorated(true);
+        this.setType(javax.swing.JFrame.Type.UTILITY);
 		URL url = this.getClass().getResource("/img/hilt.png");
 		BufferedImage image = ImageIO.read(url);
 		ImageIcon icon = new ImageIcon(image);
