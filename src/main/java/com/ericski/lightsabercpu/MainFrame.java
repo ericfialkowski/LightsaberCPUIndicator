@@ -1,4 +1,4 @@
-package com.ericski.starcpu;
+package com.ericski.lightsabercpu;
 
 import java.awt.Color;
 import java.awt.Dimension;

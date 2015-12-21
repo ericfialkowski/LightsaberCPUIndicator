@@ -1,4 +1,4 @@
-package com.ericski.starcpu;
+package com.ericski.lightsabercpu;
 
 import java.lang.management.ManagementFactory;
 import javax.management.Attribute;
