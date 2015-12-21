@@ -169,18 +169,27 @@ public class MainFrame extends JFrame
 		public void paintComponent(Graphics g)
 		{
 			super.paintComponent(g);
+			g.clearRect(0, 0,getWidth(), getHeight());
 			Graphics2D g2d = (Graphics2D) g.create();
 			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 			if ( bladePercent > .95)
-				g2d.setColor(Color.RED);
+				g2d.setColor(new Color(200, 0, 0));
 			else if ( bladePercent > .90)
-				g2d.setColor(Color.YELLOW);
+				g2d.setColor(new Color(200, 200, 0));
 			else
-				g2d.setColor(Color.GREEN);
+				g2d.setColor(new Color(0, 200, 0));
 			int bladeHeight = (int) (getHeight() * bladePercent);
-			g2d.fillRect(26, getHeight() - bladeHeight+30, 26, bladeHeight);
-			g2d.fillOval(26, getHeight() - bladeHeight+15, 26, 26);
+			g2d.fillRect(24, getHeight() - bladeHeight+30, 26, bladeHeight);
+			g2d.fillOval(24, getHeight() - bladeHeight+15, 26, 26);
+
+			g2d.setColor(g2d.getColor().brighter());
+			g2d.fillRect(30, getHeight() - bladeHeight+30, 14, bladeHeight);
+			g2d.fillOval(30, getHeight() - bladeHeight+22, 14, 14);
+
+			g2d.setColor(Color.WHITE);
+			g2d.fillRect(36, getHeight() - bladeHeight+30, 2, bladeHeight);
+			g2d.fillOval(36, getHeight() - bladeHeight+28, 2, 2);
 			g2d.dispose();
 		}
 	}
