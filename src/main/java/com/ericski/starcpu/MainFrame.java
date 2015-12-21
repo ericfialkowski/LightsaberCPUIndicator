@@ -33,7 +33,7 @@ public class MainFrame extends JFrame
 	public void init() throws IOException
 	{
 		this.setUndecorated(true);
-		URL url = this.getClass().getResource("/img/hilt2.png");
+		URL url = this.getClass().getResource("/img/hilt.png");
 		BufferedImage image = ImageIO.read(url);
 		ImageIcon icon = new ImageIcon(image);
 		JLabel hiltLabel = new JLabel(icon, JLabel.CENTER);
