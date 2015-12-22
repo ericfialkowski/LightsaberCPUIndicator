@@ -177,7 +177,6 @@ public class MainFrame extends JFrame
 			int ri = 0;
 			int g = 0;
 			int gi = 0;
-;
 
 			if ( bladePercent > .95)
 			{
