@@ -28,18 +28,21 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class MainFrame extends JFrame
 {
 	private JBlade blade;
-	private Timer timer;
 
-	public void init() throws IOException
+    public void init() throws IOException
 	{
 		this.setUndecorated(true);
         this.setType(javax.swing.JFrame.Type.UTILITY);
 		URL url = this.getClass().getResource("/img/hilt.png");
+		if (url == null) {
+			System.err.println("Couldn't find the embedded image, the is a corrupt binary");
+			System.exit(100);
+		}
 		BufferedImage image = ImageIO.read(url);
 		ImageIcon icon = new ImageIcon(image);
 		JLabel hiltLabel = new JLabel(icon, JLabel.CENTER);
 		setBackground(new Color(0,0,0,0));
-//		this.setOpacity(0.5f);
+
 		this.getRootPane().setLayout(new BoxLayout(this.getRootPane(), BoxLayout.Y_AXIS));
 		this.getRootPane().add(blade = new JBlade(), CENTER_ALIGNMENT);
 		this.getRootPane().add(hiltLabel, CENTER_ALIGNMENT);
@@ -84,11 +87,11 @@ public class MainFrame extends JFrame
 			}
 		});
 
-		timer = new Timer(5000, (ActionEvent e) ->
-		{
-			blade.setBladePercent(CPU.SystemCpuLoad());
-		});
-		timer.setInitialDelay(15000);
+        Timer timer = new Timer(1000, (ActionEvent e) ->
+        {
+            blade.setBladePercent(CPU.SystemCpuLoad());
+        });
+		timer.setInitialDelay(10000);
 		timer.start();
 		this.pack();
 	}
@@ -144,7 +147,7 @@ public class MainFrame extends JFrame
 		});
 	}
 
-	private final class JBlade extends JPanel
+	private static final class JBlade extends JPanel
 	{
 		private double bladePercent = .70;
 
@@ -169,7 +172,8 @@ public class MainFrame extends JFrame
 		public void paintComponent(Graphics graphics)
 		{
 			super.paintComponent(graphics);
-			graphics.clearRect(0, 0,getWidth(), getHeight());
+			graphics.setColor(new Color(0,0,0,0));
+			graphics.fillRect(0, 0,getWidth(), getHeight());
 			Graphics2D g2d = (Graphics2D) graphics.create();
 			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
